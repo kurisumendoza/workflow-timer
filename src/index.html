@@ -5,5 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Workflow Timer</title>
   </head>
-  <body></body>
+  <body>
+    <div id="header">Workflow Timer</div>
+    <div id="timer-display">
+      <!-- TODO: Hardcoded text will be changed by the values inputted by the user. -->
+      <!-- TODO: Add a separate secondTenths display below the main countdown display -->
+      <div id="countdown-display">00:00:00</div>
+    </div>
+    <div id="timer-btns">
+      <button id="start">start</button>
+      <button id="pause">pause</button>
+      <button id="reset">reset</button>
+      <button id="stop">stop</button>
+    </div>
+    <div id="timer-values">
+      <!-- TODO: Add a grace period option which won't be counted in the total time -->
+      <p id="total-time">00:00:00</p>
+      <p id="ticks-counter">Counter: 0</p>
+    </div>
+    <div id="settings">
+      <button id="set-timer">Set Timer</button>
+    </div>
+  </body>
 </html>
