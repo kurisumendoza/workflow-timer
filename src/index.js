@@ -4,4 +4,4 @@ import {
   pauseTimer,
   resetTimer,
   stopTimer,
-} from './scripts/timerControl';
+} from './scripts/timerControl.js';
