@@ -3,6 +3,7 @@ import { timerValues } from './timerSetup';
 let totalTimeInSeconds = 0;
 
 const totalTimeDisplay = document.getElementById('total-time');
+const editTotalTime = document.getElementById('edit-total-time');
 
 export const totalTimeCounter = function () {
   totalTimeInSeconds +=

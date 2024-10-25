@@ -1,5 +1,5 @@
 import { Timer } from 'easytimer.js';
-import { timerValues, setTimerValues, displayTimerValues } from './timerSetup';
+import { timerValues, setTimerValues, renderTimerValues } from './timerSetup';
 import { totalTimeCounter, displayTotalTime } from './timerCounter';
 
 export const countdownDisplay = document.getElementById('countdown-display');
@@ -38,13 +38,13 @@ export const pauseTimer = function () {
 
 export const resetTimer = function () {
   if (!timer.isRunning() && !timer.isPaused()) return;
-  displayTimerValues();
+  renderTimerValues();
   timer.reset();
 };
 
 export const nextTimer = function () {
   if (countdownDisplay.innerText != "Time's Up!!") return;
-  displayTimerValues();
+  renderTimerValues();
   timer.reset();
   totalTimeCounter();
   displayTotalTime();
@@ -53,7 +53,7 @@ export const nextTimer = function () {
 export const stopTimer = function () {
   timer.stop();
   setTimerValues(0, 0, 0);
-  displayTimerValues();
+  renderTimerValues();
 };
 
 startBtn.addEventListener('click', () =>

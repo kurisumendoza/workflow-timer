@@ -1,4 +1,5 @@
 import { countdownDisplay } from './timerControl';
+import { openSetTimerModal } from './timerSetupModal';
 
 const setTimerBtn = document.getElementById('set-timer-btn');
 
@@ -9,11 +10,13 @@ export const timerValues = {
 };
 
 const setTimer = function () {
-  const timeInput = prompt(
-    "set timer separated with ':' (Example: 1:20:00)"
-  ).split(':');
+  openSetTimerModal();
+};
+
+export const renderSetTimer = function (input) {
+  const timeInput = input.split(':');
   setTimerValues(...timeInput);
-  displayTimerValues();
+  renderTimerValues();
 };
 
 export const setTimerValues = function (hour, min, sec) {
@@ -22,7 +25,7 @@ export const setTimerValues = function (hour, min, sec) {
   timerValues.seconds = sec;
 };
 
-export const displayTimerValues = function () {
+export const renderTimerValues = function () {
   countdownDisplay.innerText = `${timerValues.hours
     .toString()
     .padStart(2, '0')}:${timerValues.minutes

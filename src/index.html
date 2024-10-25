@@ -6,25 +6,45 @@
     <title>Workflow Timer</title>
   </head>
   <body>
-    <div id="header">Workflow Timer</div>
-    <div id="timer-display">
+    <header class="header">
+      <p>Workflow Timer</p>
+    </header>
+    <div class="timer-display">
       <div id="countdown-display">00:00:00</div>
     </div>
-    <div id="timer-btns">
+    <div class="timer-btns">
       <button id="start">start</button>
       <button id="pause">pause</button>
       <button id="reset">reset</button>
       <button id="next">next</button>
       <button id="stop">stop</button>
     </div>
-    <div id="timer-values">
+    <div class="set-timer">
+      <button id="set-timer-btn">Set Timer</button>
+      <dialog id="set-timer-modal">
+        <div id="set-timer-modal-display"></div>
+        <button class="modal-button" data-number="1">1</button>
+        <button class="modal-button" data-number="2">2</button>
+        <button class="modal-button" data-number="3">3</button>
+        <button class="modal-button" data-number="4">4</button>
+        <button class="modal-button" data-number="5">5</button>
+        <button class="modal-button" data-number="6">6</button>
+        <button class="modal-button" data-number="7">7</button>
+        <button class="modal-button" data-number="8">8</button>
+        <button class="modal-button" data-number="9">9</button>
+        <button class="modal-button" data-number="0">0</button>
+        <button id="delete">del</button>
+        <button id="confirm">ok</button>
+        <button id="cancel">cancel</button>
+        <p id="warning" hidden>Maximum time is 24:00:00</p>
+      </dialog>
+    </div>
+    <div class="timer-counter">
       <!-- TODO: Add a grace period option which won't be counted in the total time -->
       <p id="total-time-display">
         Total Time: <span id="total-time">00:00:00</span>
       </p>
-    </div>
-    <div id="settings">
-      <button id="set-timer-btn">Set Timer</button>
+      <button id="edit-total-time">Edit</button>
     </div>
   </body>
 </html>
