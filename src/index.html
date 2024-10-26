@@ -22,7 +22,7 @@
     <div class="set-timer">
       <button id="set-timer-btn">Set Timer</button>
       <dialog id="set-timer-modal">
-        <div id="set-timer-modal-display"></div>
+        <p id="set-timer-modal-display"></p>
         <button class="modal-button" data-number="1">1</button>
         <button class="modal-button" data-number="2">2</button>
         <button class="modal-button" data-number="3">3</button>
@@ -41,10 +41,21 @@
     </div>
     <div class="timer-counter">
       <!-- TODO: Add a grace period option which won't be counted in the total time -->
-      <p id="total-time-display">
+      <p id="timer-counter-display">
         Total Time: <span id="total-time">00:00:00</span>
       </p>
-      <button id="edit-total-time">Edit</button>
+      <button id="edit-timer-counter-btn">Edit</button>
+      <dialog id="edit-timer-counter-modal">
+        <p id="modal-total-time-display">00:00:00</p>
+        <button id="counter-modal-revert-btn">Delete Last Entry</button>
+        <button id="counter-modal-reset-btn">Reset Total Time</button>
+        <button id="counter-modal-close-btn">X</button>
+        <dialog id="counter-reset-modal">
+          <p>Are you sure you want to reset total time?</p>
+          <button id="counter-reset-yes-btn">Yes</button>
+          <button id="counter-reset-no-btn">No</button>
+        </dialog>
+      </dialog>
     </div>
   </body>
 </html>

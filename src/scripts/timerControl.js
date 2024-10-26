@@ -1,6 +1,6 @@
 import { Timer } from 'easytimer.js';
 import { timerValues, setTimerValues, renderTimerValues } from './timerSetup';
-import { totalTimeCounter, displayTotalTime } from './timerCounter';
+import { updateTotalTimeCounter } from './timerCounter';
 
 export const countdownDisplay = document.getElementById('countdown-display');
 
@@ -46,8 +46,7 @@ export const nextTimer = function () {
   if (countdownDisplay.innerText != "Time's Up!!") return;
   renderTimerValues();
   timer.reset();
-  totalTimeCounter();
-  displayTotalTime();
+  updateTotalTimeCounter();
 };
 
 export const stopTimer = function () {
