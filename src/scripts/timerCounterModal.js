@@ -23,7 +23,9 @@ const renderTotalTimeInModal = function () {
 };
 
 const deleteLastEntry = function () {
+  if (!counterValues.isNewTimeAdded) return;
   counterValues.totalTimeInSeconds -= counterValues.timeToAddInSeconds;
+  counterValues.isNewTimeAdded = false;
   renderTotalTime();
   renderTotalTimeInModal();
 };

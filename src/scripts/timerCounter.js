@@ -4,6 +4,7 @@ import { openEditCounterModal } from './timerCounterModal';
 export const counterValues = {
   totalTimeInSeconds: 0,
   timeToAddInSeconds: 0,
+  isNewTimeAdded: false,
 };
 
 export const totalTimeDisplay = document.getElementById('total-time');
@@ -18,6 +19,7 @@ const convertTimeToAddToSeconds = function () {
 
 const updateTotalTimeInSeconds = function () {
   counterValues.totalTimeInSeconds += counterValues.timeToAddInSeconds;
+  counterValues.isNewTimeAdded = true;
 };
 
 const calculateTotalTime = function () {
