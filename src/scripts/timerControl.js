@@ -2,7 +2,7 @@ import { Timer } from 'easytimer.js';
 import { countdownDisplay, timerControls } from './domElements';
 import { mainTimerSetup } from './timerSetup';
 import { updateTotalTimeCounter } from './timerCounter';
-import { openSetTimerModal } from './timerSetupModal';
+import { mainTimerSetupModal } from './timerSetupModal';
 import { openEditCounterModal } from './timerCounterModal';
 
 export const timer = new Timer();
@@ -56,5 +56,8 @@ timerControls.pauseBtn.addEventListener('click', pauseTimer);
 timerControls.resetBtn.addEventListener('click', resetTimer);
 timerControls.nextBtn.addEventListener('click', nextTimer);
 timerControls.stopBtn.addEventListener('click', stopTimer);
-timerControls.setTimerBtn.addEventListener('click', openSetTimerModal);
+timerControls.setTimerBtn.addEventListener(
+  'click',
+  mainTimerSetupModal.openSetTimerModal
+);
 timerControls.editTotalTimeBtn.addEventListener('click', openEditCounterModal);
