@@ -1,27 +1,20 @@
 import Timer from 'easytimer.js';
 import { timer } from './timerControl';
-
-const delayConfirmationModal = document.getElementById(
-  'delay-timer-confirmation-modal'
-);
-const yesDelay = document.getElementById('delay-yes');
-const noDelay = document.getElementById('delay-no');
+import { TimerSetup } from './timerSetup';
+import { delayModalEl } from './domElements';
 
 const delayTimer = new Timer();
 
-const delayTimerValues = {
-  hours: 0,
-  minutes: 0,
-  seconds: 0,
-};
+const delayTimerSetup = new TimerSetup(0, 0, 0);
+console.log(delayTimerSetup);
 
 export const openDelayConfirmationModal = function () {
-  delayConfirmationModal.showModal();
+  delayModalEl.modal.showModal();
 };
 
 const renderDelayTimer = function () {};
 
 const renderDelayTimerInModal = function () {};
 
-yesDelay.addEventListener('click', renderDelayTimerInModal);
-noDelay.addEventListener('click', () => delayConfirmationModal.close());
+delayModalEl.yesBtn.addEventListener('click', renderDelayTimerInModal);
+delayModalEl.noBtn.addEventListener('click', () => delayModalEl.modal.close());

@@ -1,14 +1,9 @@
 import { Timer } from 'easytimer.js';
+import { countdownDisplay, timerControls } from './domElements';
 import { mainTimerSetup } from './timerSetup';
 import { updateTotalTimeCounter } from './timerCounter';
-
-export const countdownDisplay = document.getElementById('countdown-display');
-
-const startBtn = document.getElementById('start');
-const pauseBtn = document.getElementById('pause');
-const resetBtn = document.getElementById('reset');
-const nextBtn = document.getElementById('next');
-const stopBtn = document.getElementById('stop');
+import { openSetTimerModal } from './timerSetupModal';
+import { openEditCounterModal } from './timerCounterModal';
 
 export const timer = new Timer();
 
@@ -54,10 +49,12 @@ timer.addEventListener('secondTenthsUpdated', () => {
 timer.addEventListener('targetAchieved', () => {
   countdownDisplay.innerText = "Time's Up!!";
 });
-startBtn.addEventListener('click', () =>
+timerControls.startBtn.addEventListener('click', () =>
   startTimer(...Object.values(mainTimerSetup))
 );
-pauseBtn.addEventListener('click', pauseTimer);
-resetBtn.addEventListener('click', resetTimer);
-nextBtn.addEventListener('click', nextTimer);
-stopBtn.addEventListener('click', stopTimer);
+timerControls.pauseBtn.addEventListener('click', pauseTimer);
+timerControls.resetBtn.addEventListener('click', resetTimer);
+timerControls.nextBtn.addEventListener('click', nextTimer);
+timerControls.stopBtn.addEventListener('click', stopTimer);
+timerControls.setTimerBtn.addEventListener('click', openSetTimerModal);
+timerControls.editTotalTimeBtn.addEventListener('click', openEditCounterModal);

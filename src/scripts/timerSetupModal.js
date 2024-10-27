@@ -1,30 +1,22 @@
-import { countdownDisplay } from './timerControl';
+import { countdownDisplay, setupModalEl } from './domElements';
 import { mainTimerSetup } from './timerSetup';
 import { openDelayConfirmationModal } from './delayTimer';
-
-const setTimerModal = document.getElementById('set-timer-modal');
-const setTimerModalDisplay = document.getElementById('set-timer-modal-display');
-const setTimerDeleteInputBtn = document.getElementById('delete');
-const setTimerWarningMessage = document.getElementById('warning');
-const setTimerCancelBtn = document.getElementById('cancel');
-const setTimerConfirmBtn = document.getElementById('confirm');
-const setTimerDelayBtn = document.getElementById('delay');
 
 let defaultTimeSet = '';
 
 export const openSetTimerModal = function () {
-  setTimerModal.showModal();
+  setupModalEl.modal.showModal();
 };
 
 const closeSetTimerModal = function () {
-  !setTimerWarningMessage.hidden && (setTimerWarningMessage.hidden = true);
-  setTimerModal.close();
+  !setupModalEl.warningMsg.hidden && (setupModalEl.warningMsg.hidden = true);
+  setupModalEl.modal.close();
   defaultTimeSet = '';
   setTimerModalDisplayValue();
 };
 
 const setTimerModalDisplayValue = function () {
-  setTimerModalDisplay.innerText = defaultTimeSet
+  setupModalEl.setupDisplay.innerText = defaultTimeSet
     .padStart(6, '0')
     .replace(/(\d{2})(\d{2})(\d{2})/, '$1:$2:$3');
 };
@@ -38,24 +30,24 @@ const setTimerByButtonInput = function (e) {
 setTimerModalDisplayValue();
 
 const setTimerDeleteInput = function () {
-  !setTimerWarningMessage.hidden && (setTimerWarningMessage.hidden = true);
+  !setupModalEl.warningMsg.hidden && (setupModalEl.warningMsg.hidden = true);
   defaultTimeSet = defaultTimeSet.slice(0, -1);
   setTimerModalDisplayValue();
 };
 
 const setTimerConfirm = function () {
   if (defaultTimeSet > 240000) {
-    setTimerWarningMessage.hidden && (setTimerWarningMessage.hidden = false);
+    setupModalEl.warningMsg.hidden && (setupModalEl.warningMsg.hidden = false);
     return;
   }
-  mainTimerSetup.renderSetTimer(countdownDisplay, setTimerModalDisplay);
+  mainTimerSetup.renderSetTimer(countdownDisplay, setupModalEl.setupDisplay);
   closeSetTimerModal();
 };
 
-setTimerDeleteInputBtn.addEventListener('click', setTimerDeleteInput);
-setTimerCancelBtn.addEventListener('click', closeSetTimerModal);
-setTimerConfirmBtn.addEventListener('click', setTimerConfirm);
-setTimerModal.addEventListener('click', (e) => {
+setupModalEl.deleteInputBtn.addEventListener('click', setTimerDeleteInput);
+setupModalEl.cancelBtn.addEventListener('click', closeSetTimerModal);
+setupModalEl.confirmBtn.addEventListener('click', setTimerConfirm);
+setupModalEl.modal.addEventListener('click', (e) => {
   setTimerByButtonInput(e);
 });
-setTimerDelayBtn.addEventListener('click', openDelayConfirmationModal);
+setupModalEl.delayBtn.addEventListener('click', openDelayConfirmationModal);

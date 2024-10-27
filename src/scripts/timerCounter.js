@@ -1,14 +1,11 @@
 import { mainTimerSetup } from './timerSetup';
-import { openEditCounterModal } from './timerCounterModal';
+import { totalTimeDisplay } from './domElements';
 
 export const counterValues = {
   totalTimeInSeconds: 0,
   timeToAddInSeconds: 0,
   isNewTimeAdded: false,
 };
-
-export const totalTimeDisplay = document.getElementById('total-time');
-const editTotalTimeBtn = document.getElementById('edit-timer-counter-btn');
 
 const convertTimeToAddToSeconds = function () {
   counterValues.timeToAddInSeconds =
@@ -48,5 +45,3 @@ export const updateTotalTimeCounter = function () {
   updateTotalTimeInSeconds();
   renderTotalTime();
 };
-
-editTotalTimeBtn.addEventListener('click', openEditCounterModal);

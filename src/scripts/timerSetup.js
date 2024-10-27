@@ -1,7 +1,3 @@
-import { openSetTimerModal } from './timerSetupModal';
-
-const setTimerBtn = document.getElementById('set-timer-btn');
-
 export class TimerSetup {
   constructor(hours, minutes, seconds) {
     this.hours = hours;
@@ -31,5 +27,3 @@ export class TimerSetup {
 }
 
 export const mainTimerSetup = new TimerSetup(0, 0, 0);
-
-setTimerBtn.addEventListener('click', openSetTimerModal);

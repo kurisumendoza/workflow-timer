@@ -1,31 +1,13 @@
-import {
-  counterValues,
-  totalTimeDisplay,
-  renderTotalTime,
-} from './timerCounter';
-
-const editCounterModal = document.getElementById('edit-timer-counter-modal');
-const totalTimeDisplayInModal = document.getElementById(
-  'modal-total-time-display'
-);
-const deleteLastEntryBtn = document.getElementById('counter-modal-revert-btn');
-const closeEditCounterModalBtn = document.getElementById(
-  'counter-modal-close-btn'
-);
-const resetTotalTimeBtn = document.getElementById('counter-modal-reset-btn');
-const resetConfirmationModal = document.getElementById('counter-reset-modal');
-const yesResetConfirmationBtn = document.getElementById(
-  'counter-reset-yes-btn'
-);
-const noResetConfirmationBtn = document.getElementById('counter-reset-no-btn');
+import { counterValues, renderTotalTime } from './timerCounter';
+import { totalTimeDisplay, counterModalEl } from './domElements';
 
 export const openEditCounterModal = function () {
-  editCounterModal.showModal();
+  counterModalEl.modal.showModal();
   renderTotalTimeInModal();
 };
 
 const renderTotalTimeInModal = function () {
-  totalTimeDisplayInModal.innerText = totalTimeDisplay.innerText;
+  counterModalEl.totalDisplay.innerText = totalTimeDisplay.innerText;
 };
 
 const deleteLastEntry = function () {
@@ -42,18 +24,18 @@ const resetTotalTimeCounter = function () {
   counterValues.isNewTimeAdded = false;
   renderTotalTime();
   renderTotalTimeInModal();
-  resetConfirmationModal.close();
-  editCounterModal.close();
+  counterModalEl.confirmResetModal.close();
+  counterModalEl.modal.close();
 };
 
-deleteLastEntryBtn.addEventListener('click', deleteLastEntry);
-closeEditCounterModalBtn.addEventListener('click', () =>
-  editCounterModal.close()
+counterModalEl.deleteLastBtn.addEventListener('click', deleteLastEntry);
+counterModalEl.closeBtn.addEventListener('click', () =>
+  counterModalEl.modal.close()
 );
-resetTotalTimeBtn.addEventListener('click', () =>
-  resetConfirmationModal.showModal()
+counterModalEl.resetBtn.addEventListener('click', () =>
+  counterModalEl.confirmResetModal.showModal()
 );
-yesResetConfirmationBtn.addEventListener('click', resetTotalTimeCounter);
-noResetConfirmationBtn.addEventListener('click', () =>
-  resetConfirmationModal.close()
+counterModalEl.resetYesBtn.addEventListener('click', resetTotalTimeCounter);
+counterModalEl.resetNoBtn.addEventListener('click', () =>
+  counterModalEl.confirmResetModal.close()
 );
