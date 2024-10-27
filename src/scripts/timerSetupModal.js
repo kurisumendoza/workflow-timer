@@ -1,6 +1,5 @@
 import { countdownDisplay, setupModalEl } from './domElements';
 import { mainTimerSetup } from './timerSetup';
-import { openDelayConfirmationModal } from './delayTimer';
 
 let defaultTimeSet = '';
 
@@ -50,4 +49,3 @@ setupModalEl.confirmBtn.addEventListener('click', setTimerConfirm);
 setupModalEl.modal.addEventListener('click', (e) => {
   setTimerByButtonInput(e);
 });
-setupModalEl.delayBtn.addEventListener('click', openDelayConfirmationModal);

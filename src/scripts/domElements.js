@@ -8,6 +8,7 @@ export const timerControls = {
   nextBtn: document.getElementById('next'),
   stopBtn: document.getElementById('stop'),
   setTimerBtn: document.getElementById('set-timer-btn'),
+  setDelayBtn: document.getElementById('set-delay-btn'),
   editTotalTimeBtn: document.getElementById('edit-timer-counter-btn'),
 };
 
@@ -18,13 +19,6 @@ export const setupModalEl = {
   warningMsg: document.getElementById('warning'),
   cancelBtn: document.getElementById('cancel'),
   confirmBtn: document.getElementById('confirm'),
-  delayBtn: document.getElementById('delay'),
-};
-
-export const delayModalEl = {
-  modal: document.getElementById('delay-timer-confirmation-modal'),
-  yesBtn: document.getElementById('delay-yes'),
-  noBtn: document.getElementById('delay-no'),
 };
 
 export const counterModalEl = {
