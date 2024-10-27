@@ -1,4 +1,5 @@
 import { renderSetTimer } from './timerSetup';
+import { openDelayConfirmationModal } from './delayTimer';
 
 const setTimerModal = document.getElementById('set-timer-modal');
 const setTimerModalDisplay = document.getElementById('set-timer-modal-display');
@@ -6,6 +7,7 @@ const setTimerDeleteInputBtn = document.getElementById('delete');
 const setTimerWarningMessage = document.getElementById('warning');
 const setTimerCancelBtn = document.getElementById('cancel');
 const setTimerConfirmBtn = document.getElementById('confirm');
+const setTimerDelayBtn = document.getElementById('delay');
 
 let defaultTimeSet = '';
 
@@ -55,3 +57,4 @@ setTimerConfirmBtn.addEventListener('click', setTimerConfirm);
 setTimerModal.addEventListener('click', (e) => {
   setTimerByButtonInput(e);
 });
+setTimerDelayBtn.addEventListener('click', openDelayConfirmationModal);

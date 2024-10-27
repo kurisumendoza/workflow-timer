@@ -10,15 +10,7 @@ const resetBtn = document.getElementById('reset');
 const nextBtn = document.getElementById('next');
 const stopBtn = document.getElementById('stop');
 
-const timer = new Timer();
-
-timer.addEventListener('secondTenthsUpdated', () => {
-  countdownDisplay.innerText = timer.getTimeValues().toString();
-});
-
-timer.addEventListener('targetAchieved', () => {
-  countdownDisplay.innerText = "Time's Up!!";
-});
+export const timer = new Timer();
 
 export const startTimer = function (hour, min, sec) {
   timer.start({
@@ -55,6 +47,12 @@ export const stopTimer = function () {
   renderTimerValues();
 };
 
+timer.addEventListener('secondTenthsUpdated', () => {
+  countdownDisplay.innerText = timer.getTimeValues().toString();
+});
+timer.addEventListener('targetAchieved', () => {
+  countdownDisplay.innerText = "Time's Up!!";
+});
 startBtn.addEventListener('click', () =>
   startTimer(...Object.values(timerValues))
 );

@@ -10,6 +10,7 @@
       <p>Workflow Timer</p>
     </header>
     <div class="timer-display">
+      <div id="delay-countdown-display" hidden>00:00:00</div>
       <div id="countdown-display">00:00:00</div>
     </div>
     <div class="timer-btns">
@@ -23,6 +24,7 @@
       <button id="set-timer-btn">Set Timer</button>
       <dialog id="set-timer-modal">
         <p id="set-timer-modal-display"></p>
+        <p id="delay-timer-modal-display">Delay: <span>00:00:00</span></p>
         <button class="modal-button" data-number="1">1</button>
         <button class="modal-button" data-number="2">2</button>
         <button class="modal-button" data-number="3">3</button>
@@ -33,14 +35,20 @@
         <button class="modal-button" data-number="8">8</button>
         <button class="modal-button" data-number="9">9</button>
         <button class="modal-button" data-number="0">0</button>
-        <button id="delete">del</button>
-        <button id="confirm">ok</button>
-        <button id="cancel">cancel</button>
+        <button class="modal-button" id="delete">del</button>
+        <button class="modal-button" id="confirm">ok</button>
+        <button class="modal-button" id="cancel">cancel</button>
+        <button class="modal-button" id="delay">delay</button>
         <p id="warning" hidden>Maximum time is 24:00:00</p>
+      </dialog>
+      <dialog id="delay-timer-confirmation-modal">
+        <p>Do you want to add a delay/grace period timer?</p>
+        <p>This will not be added to your total time.</p>
+        <button id="delay-yes">Yes</button>
+        <button id="delay-no">No</button>
       </dialog>
     </div>
     <div class="timer-counter">
-      <!-- TODO: Add a grace period option which won't be counted in the total time -->
       <p id="timer-counter-display">
         Total Time: <span id="total-time">00:00:00</span>
       </p>
@@ -50,11 +58,11 @@
         <button id="counter-modal-revert-btn">Delete Last Entry</button>
         <button id="counter-modal-reset-btn">Reset Total Time</button>
         <button id="counter-modal-close-btn">X</button>
-        <dialog id="counter-reset-modal">
-          <p>Are you sure you want to reset total time?</p>
-          <button id="counter-reset-yes-btn">Yes</button>
-          <button id="counter-reset-no-btn">No</button>
-        </dialog>
+      </dialog>
+      <dialog id="counter-reset-modal">
+        <p>Are you sure you want to reset total time?</p>
+        <button id="counter-reset-yes-btn">Yes</button>
+        <button id="counter-reset-no-btn">No</button>
       </dialog>
     </div>
   </body>
