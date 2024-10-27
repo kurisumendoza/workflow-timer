@@ -1,4 +1,4 @@
-import { timerValues } from './timerSetup';
+import { mainTimerSetup } from './timerSetup';
 import { openEditCounterModal } from './timerCounterModal';
 
 export const counterValues = {
@@ -12,9 +12,9 @@ const editTotalTimeBtn = document.getElementById('edit-timer-counter-btn');
 
 const convertTimeToAddToSeconds = function () {
   counterValues.timeToAddInSeconds =
-    Number(timerValues.hours) * 3600 +
-    Number(timerValues.minutes) * 60 +
-    Number(timerValues.seconds);
+    Number(mainTimerSetup.hours) * 3600 +
+    Number(mainTimerSetup.minutes) * 60 +
+    Number(mainTimerSetup.seconds);
 };
 
 const updateTotalTimeInSeconds = function () {

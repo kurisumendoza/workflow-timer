@@ -1,36 +1,35 @@
-import { countdownDisplay } from './timerControl';
 import { openSetTimerModal } from './timerSetupModal';
 
 const setTimerBtn = document.getElementById('set-timer-btn');
 
-export const timerValues = {
-  hours: 0,
-  minutes: 0,
-  seconds: 0,
-};
+export class TimerSetup {
+  constructor(hours, minutes, seconds) {
+    this.hours = hours;
+    this.minutes = minutes;
+    this.seconds = seconds;
+  }
 
-const setTimer = function () {
-  openSetTimerModal();
-};
+  renderSetTimer(mainDisplay, modalDisplay) {
+    const timeInput = modalDisplay.innerText.split(':');
+    this.setTimerValues(...timeInput);
+    this.renderTimerValues(mainDisplay);
+  }
 
-export const renderSetTimer = function (input) {
-  const timeInput = input.split(':');
-  setTimerValues(...timeInput);
-  renderTimerValues();
-};
+  setTimerValues(hour, min, sec) {
+    this.hours = hour;
+    this.minutes = min;
+    this.seconds = sec;
+  }
 
-export const setTimerValues = function (hour, min, sec) {
-  timerValues.hours = hour;
-  timerValues.minutes = min;
-  timerValues.seconds = sec;
-};
+  renderTimerValues(mainDisplay) {
+    mainDisplay.innerText = `${this.hours
+      .toString()
+      .padStart(2, '0')}:${this.minutes
+      .toString()
+      .padStart(2, '0')}:${this.seconds.toString().padStart(2, '0')}`;
+  }
+}
 
-export const renderTimerValues = function () {
-  countdownDisplay.innerText = `${timerValues.hours
-    .toString()
-    .padStart(2, '0')}:${timerValues.minutes
-    .toString()
-    .padStart(2, '0')}:${timerValues.seconds.toString().padStart(2, '0')}`;
-};
+export const mainTimerSetup = new TimerSetup(0, 0, 0);
 
-setTimerBtn.addEventListener('click', setTimer);
+setTimerBtn.addEventListener('click', openSetTimerModal);

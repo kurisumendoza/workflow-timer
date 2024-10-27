@@ -1,5 +1,5 @@
 import { Timer } from 'easytimer.js';
-import { timerValues, setTimerValues, renderTimerValues } from './timerSetup';
+import { mainTimerSetup } from './timerSetup';
 import { updateTotalTimeCounter } from './timerCounter';
 
 export const countdownDisplay = document.getElementById('countdown-display');
@@ -25,26 +25,27 @@ export const startTimer = function (hour, min, sec) {
 };
 
 export const pauseTimer = function () {
+  if (!timer.isRunning() && !timer.isPaused()) return;
   timer.pause();
 };
 
 export const resetTimer = function () {
   if (!timer.isRunning() && !timer.isPaused()) return;
-  renderTimerValues();
+  mainTimerSetup.renderTimerValues(countdownDisplay);
   timer.reset();
 };
 
 export const nextTimer = function () {
   if (countdownDisplay.innerText != "Time's Up!!") return;
-  renderTimerValues();
+  mainTimerSetup.renderTimerValues(countdownDisplay);
   timer.reset();
   updateTotalTimeCounter();
 };
 
 export const stopTimer = function () {
   timer.stop();
-  setTimerValues(0, 0, 0);
-  renderTimerValues();
+  mainTimerSetup.setTimerValues(0, 0, 0);
+  mainTimerSetup.renderTimerValues(countdownDisplay);
 };
 
 timer.addEventListener('secondTenthsUpdated', () => {
@@ -54,7 +55,7 @@ timer.addEventListener('targetAchieved', () => {
   countdownDisplay.innerText = "Time's Up!!";
 });
 startBtn.addEventListener('click', () =>
-  startTimer(...Object.values(timerValues))
+  startTimer(...Object.values(mainTimerSetup))
 );
 pauseBtn.addEventListener('click', pauseTimer);
 resetBtn.addEventListener('click', resetTimer);

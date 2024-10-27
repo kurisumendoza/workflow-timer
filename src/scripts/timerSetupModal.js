@@ -1,4 +1,5 @@
-import { renderSetTimer } from './timerSetup';
+import { countdownDisplay } from './timerControl';
+import { mainTimerSetup } from './timerSetup';
 import { openDelayConfirmationModal } from './delayTimer';
 
 const setTimerModal = document.getElementById('set-timer-modal');
@@ -47,7 +48,7 @@ const setTimerConfirm = function () {
     setTimerWarningMessage.hidden && (setTimerWarningMessage.hidden = false);
     return;
   }
-  renderSetTimer(setTimerModalDisplay.innerText);
+  mainTimerSetup.renderSetTimer(countdownDisplay, setTimerModalDisplay);
   closeSetTimerModal();
 };
 
