@@ -1,4 +1,7 @@
 export const countdownDisplay = document.getElementById('countdown-display');
+export const delayTimerDisplay = document.getElementById(
+  'delay-countdown-display'
+);
 export const totalTimeDisplay = document.getElementById('total-time');
 
 export const timerControls = {
@@ -15,6 +18,7 @@ export const timerControls = {
 export const setupModalEl = {
   modal: document.getElementById('set-timer-modal'),
   setupDisplay: document.getElementById('set-timer-modal-display'),
+  delayDisplay: document.getElementById('delay-timer-modal-display'),
   deleteInputBtn: document.getElementById('delete'),
   warningMsg: document.getElementById('warning'),
   cancelBtn: document.getElementById('cancel'),

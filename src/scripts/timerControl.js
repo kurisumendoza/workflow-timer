@@ -3,6 +3,7 @@ import { countdownDisplay, timerControls } from './domElements';
 import { mainTimerSetup } from './timerSetup';
 import { updateTotalTimeCounter } from './timerCounter';
 import { mainTimerSetupModal } from './timerSetupModal';
+import { delayTimerSetupModal } from './delayTimer';
 import { openEditCounterModal } from './timerCounterModal';
 
 export const timer = new Timer();
@@ -56,8 +57,12 @@ timerControls.pauseBtn.addEventListener('click', pauseTimer);
 timerControls.resetBtn.addEventListener('click', resetTimer);
 timerControls.nextBtn.addEventListener('click', nextTimer);
 timerControls.stopBtn.addEventListener('click', stopTimer);
-timerControls.setTimerBtn.addEventListener(
-  'click',
-  mainTimerSetupModal.openSetTimerModal
-);
+timerControls.setTimerBtn.addEventListener('click', () => {
+  mainTimerSetupModal.openSetTimerModal();
+  mainTimerSetupModal.assignTimerType(mainTimerSetupModal);
+});
+timerControls.setDelayBtn.addEventListener('click', () => {
+  delayTimerSetupModal.openSetTimerModal();
+  delayTimerSetupModal.assignTimerType(delayTimerSetupModal);
+});
 timerControls.editTotalTimeBtn.addEventListener('click', openEditCounterModal);
