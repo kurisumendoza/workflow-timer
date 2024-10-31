@@ -16,5 +16,3 @@ export const loadLocalStorage = function (key, storage) {
 export const resetLocalStorage = function (key) {
   localStorage.removeItem(key);
 };
-
-//BUG Stop button not deleting timer storage

@@ -9,6 +9,7 @@ export class TimerSetupModal {
     this.mainDisplay = mainDisplay;
     this.modalDisplay = modalDisplay;
     this.timerType = undefined;
+    this.timeNewlySet = false;
     this.handleDelete = () => {};
     this.handleClose = () => {};
     this.handleConfirm = () => {};
@@ -58,6 +59,7 @@ export class TimerSetupModal {
       return;
     }
     this.setup.renderSetTimer(this.mainDisplay, this.modalDisplay);
+    this.timeNewlySet = true;
     this.closeSetTimerModal();
   }
 
