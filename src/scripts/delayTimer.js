@@ -25,6 +25,8 @@ const startDelayTimer = function () {
     precision: 'secondTenths',
   });
   // BUG When there's no delay timer set, a timer will start when main timer is finished
+
+  //BUG Delay timer continues while setting a new time
 };
 
 const pauseDelayTimer = function () {

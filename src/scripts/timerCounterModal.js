@@ -1,6 +1,7 @@
-import { counterValues, renderTotalTime } from './timerCounter';
+import { counterValues } from './timerCounter';
 import { totalTimeDisplay, counterModalEl } from './domElements';
 import { saveToLocalStorage, resetLocalStorage } from './dataStorage';
+import { renderTotalTime } from './timerHelpers';
 
 export const openEditCounterModal = function () {
   counterModalEl.modal.showModal();
@@ -15,7 +16,7 @@ const deleteLastEntry = function () {
   if (!counterValues.isNewTimeAdded) return;
   counterValues.totalTimeInSeconds -= counterValues.timeToAddInSeconds;
   counterValues.isNewTimeAdded = false;
-  renderTotalTime();
+  renderTotalTime(counterValues.totalTimeInSeconds, totalTimeDisplay);
   renderTotalTimeInModal();
   saveToLocalStorage('total-time-counter', counterValues);
 };
@@ -24,7 +25,7 @@ const resetTotalTimeCounter = function () {
   counterValues.totalTimeInSeconds = 0;
   counterValues.timeToAddInSeconds = 0;
   counterValues.isNewTimeAdded = false;
-  renderTotalTime();
+  renderTotalTime(counterValues.totalTimeInSeconds, totalTimeDisplay);
   renderTotalTimeInModal();
   counterModalEl.confirmResetModal.close();
   counterModalEl.modal.close();

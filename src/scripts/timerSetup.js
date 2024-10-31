@@ -4,6 +4,7 @@ import {
   loadLocalStorage,
 } from './dataStorage';
 import { countdownDisplay } from './domElements';
+import { convertTimeToSeconds, renderTotalTime } from './timerHelpers';
 
 export class TimerSetup {
   constructor(hours, minutes, seconds) {
@@ -26,19 +27,15 @@ export class TimerSetup {
   }
 
   renderTimerValues(mainDisplay) {
-    mainDisplay.innerText = `${this.hours
-      .toString()
-      .padStart(2, '0')}:${this.minutes
-      .toString()
-      .padStart(2, '0')}:${this.seconds.toString().padStart(2, '0')}`;
+    const time = convertTimeToSeconds(this);
+    renderTotalTime(time, mainDisplay);
   }
 
   initializeSetup(mainDisplay, storage) {
     loadLocalStorage(`${mainDisplay.id}-storage`, storage);
-    if (!storage) return;
+    if (!storage.value) return;
     this.setTimerValues(...storage.value);
     this.renderTimerValues(mainDisplay);
-    console.log(`${mainDisplay.id}-storage`);
   }
 }
 
