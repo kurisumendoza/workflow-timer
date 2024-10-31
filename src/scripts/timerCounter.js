@@ -1,5 +1,10 @@
 import { mainTimerSetup } from './timerSetup';
 import { totalTimeDisplay } from './domElements';
+import {
+  storageObj,
+  saveToLocalStorage,
+  loadLocalStorage,
+} from './dataStorage';
 
 export const counterValues = {
   totalTimeInSeconds: 0,
@@ -17,6 +22,8 @@ const convertTimeToAddToSeconds = function () {
 const updateTotalTimeInSeconds = function () {
   counterValues.totalTimeInSeconds += counterValues.timeToAddInSeconds;
   counterValues.isNewTimeAdded = true;
+
+  saveToLocalStorage('total-time-counter', counterValues);
 };
 
 const calculateTotalTime = function () {
@@ -45,3 +52,11 @@ export const updateTotalTimeCounter = function () {
   updateTotalTimeInSeconds();
   renderTotalTime();
 };
+
+const initializeCounter = function () {
+  loadLocalStorage('total-time-counter', storageObj.counter);
+  Object.assign(counterValues, storageObj.counter.value);
+  renderTotalTime();
+};
+initializeCounter();
+console.log(storageObj.counter.value);

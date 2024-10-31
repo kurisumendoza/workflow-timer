@@ -2,6 +2,7 @@ import Timer from 'easytimer.js';
 import { TimerSetup } from './timerSetup';
 import { TimerSetupModal } from './timerSetupModal';
 import { delayTimerDisplay, setupModalEl } from './domElements';
+import { storageObj } from './dataStorage';
 
 export const delayTimer = new Timer();
 export const delayTimerSetup = new TimerSetup(0, 0, 0);
@@ -23,6 +24,7 @@ const startDelayTimer = function () {
     },
     precision: 'secondTenths',
   });
+  // BUG When there's no delay timer set, a timer will start when main timer is finished
 };
 
 const pauseDelayTimer = function () {
@@ -39,6 +41,8 @@ const stopDelayTimer = function () {
   delayTimer.stop();
 };
 
+delayTimerSetup.initializeSetup(delayTimerDisplay, storageObj.delayTimer);
+
 export const delayControls = {
   startDelayTimer,
   resetDelayTimer,
@@ -50,5 +54,3 @@ delayTimer.addEventListener('secondTenthsUpdated', () => {
 });
 
 delayTimer.addEventListener('targetAchieved', () => {});
-
-// TODO Add local storage
