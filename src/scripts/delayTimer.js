@@ -3,8 +3,8 @@ import { TimerSetup } from './timerSetup';
 import { TimerSetupModal } from './timerSetupModal';
 import { delayTimerDisplay, setupModalEl } from './domElements';
 
-const delayTimer = new Timer();
-const delayTimerSetup = new TimerSetup(0, 0, 0);
+export const delayTimer = new Timer();
+export const delayTimerSetup = new TimerSetup(0, 0, 0);
 export const delayTimerSetupModal = new TimerSetupModal(
   '',
   setupModalEl.warningMsg,
@@ -13,8 +13,42 @@ export const delayTimerSetupModal = new TimerSetupModal(
   setupModalEl.delayDisplay
 );
 
-export const renderDelayTimer = function () {};
+const startDelayTimer = function () {
+  delayTimer.start({
+    countdown: true,
+    startValues: {
+      hours: delayTimerSetup.hours,
+      minutes: delayTimerSetup.minutes,
+      seconds: delayTimerSetup.seconds,
+    },
+    precision: 'secondTenths',
+  });
+};
 
-const renderDelayTimerInModal = function () {};
+const pauseDelayTimer = function () {
+  delayTimer.pause();
+};
 
-// TODO Display Delay Timer in UI by utilizing the TimerSetup class
+const resetDelayTimer = function () {
+  delayTimer.reset();
+  delayTimerSetup.renderTimerValues(delayTimerDisplay);
+  pauseDelayTimer();
+};
+
+const stopDelayTimer = function () {
+  delayTimer.stop();
+};
+
+export const delayControls = {
+  startDelayTimer,
+  resetDelayTimer,
+  stopDelayTimer,
+};
+
+delayTimer.addEventListener('secondTenthsUpdated', () => {
+  delayTimerDisplay.innerText = delayTimer.getTimeValues().toString();
+});
+
+delayTimer.addEventListener('targetAchieved', () => {});
+
+// TODO Add local storage
