@@ -70,36 +70,49 @@ const stopDelayTimer = function () {
   resetLocalStorage(`${delayTimerDisplay.id}-storage`);
 };
 
-timer.addEventListener('secondTenthsUpdated', () => {
-  countdownDisplay.innerText = timer.getTimeValues().toString();
-});
-timer.addEventListener('targetAchieved', () => {
-  countdownDisplay.innerText = "Time's Up!!";
-  if (delayTimerDisplay.innerText === '00:00:00') return;
-  delayControls.startDelayTimer();
-});
-timerControls.startBtn.addEventListener('click', () => {
+const reinitializeTimersOnTimeSet = function () {
   if (mainTimerSetupModal.timeNewlySet === true) timer.stop();
   if (delayTimerSetupModal.timeNewlySet === true) delayTimer.stop();
   if (delayTimer.isPaused()) delayControls.resetDelayTimer();
   mainTimerSetupModal.timeNewlySet = false;
   delayTimerSetupModal.timeNewlySet = false;
-  startTimer(...Object.values(mainTimerSetup));
-});
-timerControls.pauseBtn.addEventListener('click', pauseTimer);
-timerControls.resetBtn.addEventListener('click', resetTimer);
-timerControls.nextBtn.addEventListener('click', nextTimer);
-timerControls.stopBtn.addEventListener('click', stopTimer);
-timerControls.setTimerBtn.addEventListener('click', () => {
+};
+
+const pauseTimersOnTimerBeingSet = function () {
   if (timer.isRunning()) timer.pause();
   if (delayTimer.isRunning()) delayTimer.pause();
-  mainTimerSetupModal.openSetTimerModal();
-  mainTimerSetupModal.assignTimerType(mainTimerSetupModal);
-});
-timerControls.setDelayBtn.addEventListener('click', () => {
-  if (timer.isRunning()) timer.pause();
-  if (delayTimer.isRunning()) delayTimer.pause();
-  delayTimerSetupModal.openSetTimerModal();
-  delayTimerSetupModal.assignTimerType(delayTimerSetupModal);
-});
-timerControls.editTotalTimeBtn.addEventListener('click', openEditCounterModal);
+};
+
+const initializeControlEventListeners = function () {
+  timer.addEventListener('secondTenthsUpdated', () => {
+    countdownDisplay.innerText = timer.getTimeValues().toString();
+  });
+  timer.addEventListener('targetAchieved', () => {
+    countdownDisplay.innerText = "TIME'S UP!!";
+    if (delayTimerDisplay.innerText === '00:00:00') return;
+    delayControls.startDelayTimer();
+  });
+  timerControls.startBtn.addEventListener('click', () => {
+    reinitializeTimersOnTimeSet();
+    startTimer(...Object.values(mainTimerSetup));
+  });
+  timerControls.pauseBtn.addEventListener('click', pauseTimer);
+  timerControls.resetBtn.addEventListener('click', resetTimer);
+  timerControls.nextBtn.addEventListener('click', nextTimer);
+  timerControls.stopBtn.addEventListener('click', stopTimer);
+  timerControls.setTimerBtn.addEventListener('click', () => {
+    pauseTimersOnTimerBeingSet();
+    mainTimerSetupModal.openSetTimerModal();
+    mainTimerSetupModal.assignTimerType(mainTimerSetupModal);
+  });
+  timerControls.setDelayBtn.addEventListener('click', () => {
+    pauseTimersOnTimerBeingSet();
+    delayTimerSetupModal.openSetTimerModal();
+    delayTimerSetupModal.assignTimerType(delayTimerSetupModal);
+  });
+  timerControls.editTotalTimeBtn.addEventListener(
+    'click',
+    openEditCounterModal
+  );
+};
+initializeControlEventListeners();
