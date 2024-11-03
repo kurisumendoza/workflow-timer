@@ -5,7 +5,6 @@ import {
   timerControls,
 } from './domElements';
 import { mainTimerSetup } from './timerSetup';
-import { updateTotalTimeCounter } from './timerCounter';
 import { mainTimerSetupModal } from './timerSetupModal';
 import {
   delayTimer,
@@ -14,6 +13,8 @@ import {
   delayControls,
 } from './delayTimer';
 import { openEditCounterModal } from './timerCounterModal';
+import { updateTotalTimeCounter } from './timerCounter';
+import { playShortAlert, playFullAlarm, stopFullAlarm } from './timerSounds';
 import { resetLocalStorage } from './dataStorage';
 
 export const timer = new Timer();
@@ -44,16 +45,18 @@ export const resetTimer = function () {
 };
 
 export const nextTimer = function () {
-  if (countdownDisplay.innerText !== "Time's Up!!") return;
+  if (countdownDisplay.innerText !== "TIME'S UP!!") return;
   mainTimerSetup.renderTimerValues(countdownDisplay);
   timer.reset();
   delayControls.resetDelayTimer();
+  stopFullAlarm();
   updateTotalTimeCounter();
 };
 
 export const stopTimer = function () {
   stopMainTimer();
   stopDelayTimer();
+  stopFullAlarm();
 };
 
 const stopMainTimer = function () {
@@ -83,12 +86,18 @@ const pauseTimersOnTimerBeingSet = function () {
   if (delayTimer.isRunning()) delayTimer.pause();
 };
 
+const playAlertSound = function () {
+  if (delayTimerDisplay.innerText !== '00:00:00') playShortAlert();
+  else playFullAlarm();
+};
+
 const initializeControlEventListeners = function () {
   timer.addEventListener('secondTenthsUpdated', () => {
     countdownDisplay.innerText = timer.getTimeValues().toString();
   });
   timer.addEventListener('targetAchieved', () => {
     countdownDisplay.innerText = "TIME'S UP!!";
+    playAlertSound();
     if (delayTimerDisplay.innerText === '00:00:00') return;
     delayControls.startDelayTimer();
   });

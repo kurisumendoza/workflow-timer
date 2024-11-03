@@ -3,6 +3,7 @@ import { TimerSetup } from './timerSetup';
 import { TimerSetupModal } from './timerSetupModal';
 import { delayTimerDisplay, setupModalEl } from './domElements';
 import { storageObj } from './dataStorage';
+import { playFullAlarm } from './timerSounds';
 
 export const delayTimer = new Timer();
 export const delayTimerSetup = new TimerSetup(0, 0, 0);
@@ -52,4 +53,4 @@ delayTimer.addEventListener('secondTenthsUpdated', () => {
   delayTimerDisplay.innerText = delayTimer.getTimeValues().toString();
 });
 
-delayTimer.addEventListener('targetAchieved', () => {});
+delayTimer.addEventListener('targetAchieved', playFullAlarm);
