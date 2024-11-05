@@ -21,3 +21,11 @@ export const renderTotalTime = function (source, display) {
     .toString()
     .padStart(2, '0')}:${time.seconds.toString().padStart(2, '0')}`;
 };
+
+export const showElement = function (el) {
+  el.style.display = 'block';
+};
+
+export const hideElement = function (el) {
+  el.style.display = 'none';
+};

@@ -14,12 +14,14 @@ import {
 } from './delayTimer';
 import { openEditCounterModal } from './timerCounterModal';
 import { updateTotalTimeCounter } from './timerCounter';
+import { showElement, hideElement } from './timerHelpers';
 import { playShortAlert, playFullAlarm, stopFullAlarm } from './timerSounds';
 import { resetLocalStorage } from './dataStorage';
 
 export const timer = new Timer();
 
 export const startTimer = function (hour, min, sec) {
+  if (countdownDisplay.innerText === '00:00:00' && !timer.isPaused()) return;
   timer.start({
     countdown: true,
     startValues: {
@@ -31,17 +33,31 @@ export const startTimer = function (hour, min, sec) {
   });
   if (delayTimer.isRunning() || delayTimerDisplay.innerText === '00:00:00')
     delayControls.resetDelayTimer();
+  hideElement(timerControls.startBtn);
+  showElement(timerControls.pauseBtn);
 };
 
 export const pauseTimer = function () {
   if (!timer.isRunning() && !timer.isPaused()) return;
   timer.pause();
+  hideElement(timerControls.pauseBtn);
+  showElement(timerControls.startBtn);
 };
 
 export const resetTimer = function () {
-  if (!timer.isRunning() && !timer.isPaused()) return;
+  if (
+    !timer.isRunning() &&
+    !timer.isPaused() &&
+    countdownDisplay.innerText !== "TIME'S UP!!"
+  )
+    return; //Stop RESET from starting timer
   mainTimerSetup.renderTimerValues(countdownDisplay);
   timer.reset();
+  delayControls.resetDelayTimer();
+  stopFullAlarm();
+  hideElement(timerControls.startBtn);
+  hideElement(timerControls.nextBtn);
+  showElement(timerControls.pauseBtn);
 };
 
 export const nextTimer = function () {
@@ -51,12 +67,17 @@ export const nextTimer = function () {
   delayControls.resetDelayTimer();
   stopFullAlarm();
   updateTotalTimeCounter();
+  hideElement(timerControls.startBtn);
+  hideElement(timerControls.nextBtn);
+  showElement(timerControls.pauseBtn);
 };
 
 export const stopTimer = function () {
   stopMainTimer();
   stopDelayTimer();
   stopFullAlarm();
+  hideElement(timerControls.pauseBtn);
+  showElement(timerControls.startBtn);
 };
 
 const stopMainTimer = function () {
@@ -98,6 +119,8 @@ const initializeControlEventListeners = function () {
   timer.addEventListener('targetAchieved', () => {
     countdownDisplay.innerText = "TIME'S UP!!";
     playAlertSound();
+    hideElement(timerControls.pauseBtn);
+    showElement(timerControls.nextBtn);
     if (delayTimerDisplay.innerText === '00:00:00') return;
     delayControls.startDelayTimer();
   });
@@ -105,7 +128,9 @@ const initializeControlEventListeners = function () {
     reinitializeTimersOnTimeSet();
     startTimer(...Object.values(mainTimerSetup));
   });
-  timerControls.pauseBtn.addEventListener('click', pauseTimer);
+  timerControls.pauseBtn.addEventListener('click', () => {
+    pauseTimer();
+  });
   timerControls.resetBtn.addEventListener('click', resetTimer);
   timerControls.nextBtn.addEventListener('click', nextTimer);
   timerControls.stopBtn.addEventListener('click', stopTimer);

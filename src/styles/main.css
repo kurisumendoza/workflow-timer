@@ -48,6 +48,10 @@ body {
   display: none;
 }
 
+#next {
+  display: none;
+}
+
 .set-timer {
   grid-area: set-time;
   display: flex;
@@ -84,10 +88,6 @@ body {
       'controls'
       'set-time'
       'counter';
-  }
-
-  .timer-btns {
-    grid-template-columns: 1fr 1fr;
   }
 
   .set-timer {
