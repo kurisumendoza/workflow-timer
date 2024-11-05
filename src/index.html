@@ -6,58 +6,62 @@
     <title>Workflow Timer</title>
   </head>
   <body>
-    <header class="header">
-      <p>Workflow Timer</p>
-    </header>
-    <div class="timer-display">
-      <div id="delay-countdown-display">00:00:00</div>
-      <div id="countdown-display">00:00:00</div>
-    </div>
-    <div class="timer-btns">
-      <button id="start">start</button>
-      <button id="pause">pause</button>
-      <button id="reset">reset</button>
-      <button id="next">next</button>
-      <button id="stop">stop</button>
-    </div>
-    <div class="set-timer">
-      <button id="set-timer-btn">Set Timer</button>
-      <dialog id="set-timer-modal">
-        <p id="set-timer-modal-display"></p>
-        <p id="delay-timer-modal-display"></p>
-        <button class="modal-button" data-number="1">1</button>
-        <button class="modal-button" data-number="2">2</button>
-        <button class="modal-button" data-number="3">3</button>
-        <button class="modal-button" data-number="4">4</button>
-        <button class="modal-button" data-number="5">5</button>
-        <button class="modal-button" data-number="6">6</button>
-        <button class="modal-button" data-number="7">7</button>
-        <button class="modal-button" data-number="8">8</button>
-        <button class="modal-button" data-number="9">9</button>
-        <button class="modal-button" data-number="0">0</button>
-        <button class="modal-button" id="delete">del</button>
-        <button class="modal-button" id="confirm">ok</button>
-        <button class="modal-button" id="cancel">cancel</button>
-        <p id="warning" hidden>Maximum time is 24:00:00</p>
-      </dialog>
-      <button id="set-delay-btn">Set Delay</button>
-    </div>
-    <div class="timer-counter">
-      <p id="timer-counter-display">
-        Total Time: <span id="total-time">00:00:00</span>
-      </p>
-      <button id="edit-timer-counter-btn">Edit</button>
-      <dialog id="edit-timer-counter-modal">
-        <p id="modal-total-time-display">00:00:00</p>
-        <button id="counter-modal-revert-btn">Delete Last Entry</button>
-        <button id="counter-modal-reset-btn">Reset Total Time</button>
-        <button id="counter-modal-close-btn">X</button>
-      </dialog>
-      <dialog id="counter-reset-modal">
-        <p>Are you sure you want to reset total time?</p>
-        <button id="counter-reset-yes-btn">Yes</button>
-        <button id="counter-reset-no-btn">No</button>
-      </dialog>
+    <div id="main-container">
+      <header class="header">
+        <p>Workflow Timer</p>
+      </header>
+      <div class="timer-display">
+        <div id="delay-countdown-display">00:00:00</div>
+        <div id="countdown-display">00:00:00</div>
+      </div>
+      <div class="timer-btns">
+        <button id="start">start</button>
+        <button id="pause">pause</button>
+        <button id="reset">reset</button>
+        <button id="next">next</button>
+        <button id="stop">stop</button>
+      </div>
+      <div class="set-timer">
+        <button id="set-timer-btn">Set Timer</button>
+        <dialog id="set-timer-modal">
+          <p id="set-timer-modal-display"></p>
+          <p id="delay-timer-modal-display"></p>
+          <button class="modal-button" data-number="1">1</button>
+          <button class="modal-button" data-number="2">2</button>
+          <button class="modal-button" data-number="3">3</button>
+          <button class="modal-button" data-number="4">4</button>
+          <button class="modal-button" data-number="5">5</button>
+          <button class="modal-button" data-number="6">6</button>
+          <button class="modal-button" data-number="7">7</button>
+          <button class="modal-button" data-number="8">8</button>
+          <button class="modal-button" data-number="9">9</button>
+          <button class="modal-button" data-number="0">0</button>
+          <button class="modal-button" id="delete">del</button>
+          <button class="modal-button" id="confirm">ok</button>
+          <button class="modal-button" id="cancel">cancel</button>
+          <p id="warning" hidden>Maximum time is 24:00:00</p>
+        </dialog>
+        <button id="set-delay-btn">Set Delay</button>
+      </div>
+      <div class="timer-counter">
+        <div id="counter-container">
+          <p id="timer-counter-display">
+            Total Time: <span id="total-time">00:00:00</span>
+          </p>
+          <button id="edit-timer-counter-btn">Edit</button>
+        </div>
+        <dialog id="edit-timer-counter-modal">
+          <p id="modal-total-time-display">00:00:00</p>
+          <button id="counter-modal-revert-btn">Delete Last Entry</button>
+          <button id="counter-modal-reset-btn">Reset Total Time</button>
+          <button id="counter-modal-close-btn">X</button>
+        </dialog>
+        <dialog id="counter-reset-modal">
+          <p>Are you sure you want to reset total time?</p>
+          <button id="counter-reset-yes-btn">Yes</button>
+          <button id="counter-reset-no-btn">No</button>
+        </dialog>
+      </div>
     </div>
   </body>
 </html>
