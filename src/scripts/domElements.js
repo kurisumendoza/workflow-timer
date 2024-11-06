@@ -28,6 +28,7 @@ export const setupModalEl = {
 export const counterModalEl = {
   modal: document.getElementById('edit-timer-counter-modal'),
   totalDisplay: document.getElementById('modal-total-time-display'),
+  addNewBtn: document.getElementById('counter-modal-add-btn'),
   deleteLastBtn: document.getElementById('counter-modal-revert-btn'),
   closeBtn: document.getElementById('counter-modal-close-btn'),
   resetBtn: document.getElementById('counter-modal-reset-btn'),

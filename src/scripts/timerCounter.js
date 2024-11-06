@@ -11,9 +11,10 @@ export const counterValues = {
   totalTimeInSeconds: 0,
   timeToAddInSeconds: 0,
   isNewTimeAdded: false,
+  addEntryLimit: false,
 };
 
-const updateTotalTimeInSeconds = function () {
+export const updateTotalTimeInSeconds = function () {
   counterValues.totalTimeInSeconds += counterValues.timeToAddInSeconds;
   counterValues.isNewTimeAdded = true;
 
@@ -24,6 +25,7 @@ export const updateTotalTimeCounter = function () {
   counterValues.timeToAddInSeconds = convertTimeToSeconds(mainTimerSetup);
   updateTotalTimeInSeconds();
   renderTotalTime(counterValues.totalTimeInSeconds, totalTimeDisplay);
+  counterValues.addEntryLimit = false;
 };
 
 const initializeCounter = function () {

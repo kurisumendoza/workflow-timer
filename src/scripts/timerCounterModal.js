@@ -1,4 +1,4 @@
-import { counterValues } from './timerCounter';
+import { updateTotalTimeInSeconds, counterValues } from './timerCounter';
 import { totalTimeDisplay, counterModalEl } from './domElements';
 import { saveToLocalStorage, resetLocalStorage } from './dataStorage';
 import { renderTotalTime } from './timerHelpers';
@@ -12,10 +12,20 @@ const renderTotalTimeInModal = function () {
   counterModalEl.totalDisplay.innerText = totalTimeDisplay.innerText;
 };
 
+const addNewEntry = function () {
+  if (counterValues.addEntryLimit) return;
+  updateTotalTimeInSeconds();
+  counterValues.addEntryLimit = true;
+  renderTotalTime(counterValues.totalTimeInSeconds, totalTimeDisplay);
+  renderTotalTimeInModal();
+  saveToLocalStorage('total-time-counter', counterValues);
+};
+
 const deleteLastEntry = function () {
   if (!counterValues.isNewTimeAdded) return;
   counterValues.totalTimeInSeconds -= counterValues.timeToAddInSeconds;
   counterValues.isNewTimeAdded = false;
+  counterValues.addEntryLimit = false;
   renderTotalTime(counterValues.totalTimeInSeconds, totalTimeDisplay);
   renderTotalTimeInModal();
   saveToLocalStorage('total-time-counter', counterValues);
@@ -32,6 +42,7 @@ const resetTotalTimeCounter = function () {
   resetLocalStorage('total-time-counter');
 };
 
+counterModalEl.addNewBtn.addEventListener('click', addNewEntry);
 counterModalEl.deleteLastBtn.addEventListener('click', deleteLastEntry);
 counterModalEl.closeBtn.addEventListener('click', () =>
   counterModalEl.modal.close()
