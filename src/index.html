@@ -55,15 +55,27 @@
         </div>
         <dialog id="edit-timer-counter-modal">
           <p id="modal-total-time-display">00:00:00</p>
-          <button id="counter-modal-add-btn">Add New Entry</button>
-          <button id="counter-modal-revert-btn">Delete Last Entry</button>
-          <button id="counter-modal-reset-btn">Reset Total Time</button>
-          <button id="counter-modal-close-btn">X</button>
+          <button class="counter-button" id="counter-modal-add-btn">
+            Add New Entry
+          </button>
+          <button class="counter-button" id="counter-modal-revert-btn">
+            Delete Last Entry
+          </button>
+          <button class="counter-button" id="counter-modal-reset-btn">
+            Reset Total Time
+          </button>
+          <button class="counter-button" id="counter-modal-close-btn">×</button>
         </dialog>
         <dialog id="counter-reset-modal">
-          <p>Are you sure you want to reset total time?</p>
-          <button id="counter-reset-yes-btn">Yes</button>
-          <button id="counter-reset-no-btn">No</button>
+          <p id="reset-confirmation-msg">
+            Are you sure you want to reset total time?
+          </p>
+          <button class="counter-reset-button" id="counter-reset-yes-btn">
+            Yes
+          </button>
+          <button class="counter-reset-button" id="counter-reset-no-btn">
+            No
+          </button>
         </dialog>
       </div>
     </div>
