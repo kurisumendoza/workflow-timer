@@ -15,14 +15,14 @@
         <div id="countdown-display">00:00:00</div>
       </div>
       <div class="timer-btns">
-        <button id="start">start</button>
-        <button id="pause">pause</button>
-        <button id="next">next</button>
-        <button id="reset">reset</button>
-        <button id="stop">stop</button>
+        <button class="control-btns" id="start">Start</button>
+        <button class="control-btns" id="pause">Pause</button>
+        <button class="control-btns" id="next">Next</button>
+        <button class="control-btns" id="reset">Reset</button>
+        <button class="control-btns" id="stop">Stop</button>
       </div>
       <div class="set-timer">
-        <button id="set-timer-btn">Set Timer</button>
+        <button class="set-timer-btns" id="set-timer-btn">Set Timer</button>
         <dialog id="set-timer-modal">
           <p id="set-timer-modal-display"></p>
           <p id="delay-timer-modal-display"></p>
@@ -41,14 +41,17 @@
           <button class="modal-button" id="cancel">cancel</button>
           <p id="warning" hidden>Maximum time is 24:00:00</p>
         </dialog>
-        <button id="set-delay-btn">Set Delay</button>
+        <button class="set-timer-btns" id="set-delay-btn">Set Delay</button>
       </div>
       <div class="timer-counter">
         <div id="counter-container">
-          <p id="timer-counter-display">
-            Total Time: <span id="total-time">00:00:00</span>
-          </p>
-          <button id="edit-timer-counter-btn">Edit</button>
+          <div id="counter-display-container">
+            <p id="timer-counter-display">Total Time</p>
+            <p id="total-time">00:00:00</p>
+          </div>
+          <div id="counter-button-container">
+            <button id="edit-timer-counter-btn">⁝</button>
+          </div>
         </div>
         <dialog id="edit-timer-counter-modal">
           <p id="modal-total-time-display">00:00:00</p>

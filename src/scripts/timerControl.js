@@ -77,6 +77,7 @@ export const stopTimer = function () {
   stopDelayTimer();
   stopFullAlarm();
   hideElement(timerControls.pauseBtn);
+  hideElement(timerControls.nextBtn);
   showElement(timerControls.startBtn);
 };
 
