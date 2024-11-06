@@ -118,6 +118,62 @@ body {
   font-size: 1.75rem;
 }
 
+/* Set Timer modal */
+#set-timer-modal[open] {
+  color: #f5f5f5;
+  background-color: #181c14;
+  border: none;
+  height: 100%;
+  width: 100%;
+  margin: auto;
+  padding: 25px;
+  display: grid;
+  gap: 10px;
+  justify-items: center;
+  align-items: center;
+  grid-template-columns: 3fr repeat(3, 1fr);
+  grid-template-rows: 1fr repeat(4, 1fr) 0.5fr;
+  grid-template-areas:
+    'display close close close'
+    'display button button button'
+    'display button button button'
+    'display button button button'
+    'display button button button';
+}
+
+.modal-button {
+  color: #f5f5f5;
+  font-size: 1.25rem;
+  border: none;
+  background-color: #3c3d37;
+  padding: 10px 20px;
+  width: 75%;
+  height: 75%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#set-timer-modal-display,
+#delay-timer-modal-display {
+  grid-area: display;
+  font-size: 5rem;
+}
+
+#cancel {
+  grid-area: close;
+  justify-self: end;
+  align-self: start;
+  padding: 15px;
+  width: 1rem;
+  height: 1rem;
+  background-color: #a04747;
+}
+
+#warning {
+  color: #b43f3f;
+}
+
 @media (max-width: 500px) {
   #main-container {
     max-height: 1000px;
@@ -176,6 +232,26 @@ body {
   #total-time {
     font-size: 2.5rem;
   }
+
+  #set-timer-modal[open] {
+    padding: 25px;
+    display: grid;
+    gap: 10px;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 0.5fr 2fr repeat(4, 1fr) 0.5fr;
+    grid-template-areas:
+      'close close close'
+      'display display display'
+      'button button button'
+      'button button button'
+      'button button button'
+      'button button button'
+      'warning warning warning';
+  }
+
+  #warning {
+    grid-area: warning;
+  }
 }
 
 @media (orientation: landscape) and (min-width: 1000px) {
@@ -214,6 +290,15 @@ body {
 
   #edit-timer-counter-btn {
     font-size: clamp(1.75rem, 1vw + 1rem, 2.5rem);
+  }
+
+  #set-timer-modal[open] {
+    max-height: 500px;
+    max-width: 1000px;
+  }
+
+  #warning {
+    font-size: 1.25rem;
   }
 }
 
@@ -288,5 +373,28 @@ body {
 
   #edit-timer-counter-btn {
     font-size: 2.5rem;
+  }
+
+  #set-timer-modal[open] {
+    padding: 25px;
+    max-width: 500px;
+    max-height: 1000px;
+    display: grid;
+    gap: 10px;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 0.5fr 2fr repeat(4, 1fr) 0.5fr;
+    grid-template-areas:
+      'close close close'
+      'display display display'
+      'button button button'
+      'button button button'
+      'button button button'
+      'button button button'
+      'warning warning warning';
+  }
+
+  #warning {
+    grid-area: warning;
+    font-size: 1.25rem;
   }
 }

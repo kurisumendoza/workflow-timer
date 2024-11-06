@@ -2,6 +2,7 @@ import { Timer } from 'easytimer.js';
 import {
   countdownDisplay,
   delayTimerDisplay,
+  setupModalEl,
   timerControls,
 } from './domElements';
 import { mainTimerSetup } from './timerSetup';
@@ -139,11 +140,15 @@ const initializeControlEventListeners = function () {
     pauseTimersOnTimerBeingSet();
     mainTimerSetupModal.openSetTimerModal();
     mainTimerSetupModal.assignTimerType(mainTimerSetupModal);
+    showElement(setupModalEl.setupDisplay);
+    hideElement(setupModalEl.delayDisplay);
   });
   timerControls.setDelayBtn.addEventListener('click', () => {
     pauseTimersOnTimerBeingSet();
     delayTimerSetupModal.openSetTimerModal();
     delayTimerSetupModal.assignTimerType(delayTimerSetupModal);
+    showElement(setupModalEl.delayDisplay);
+    hideElement(setupModalEl.setupDisplay);
   });
   timerControls.editTotalTimeBtn.addEventListener(
     'click',
