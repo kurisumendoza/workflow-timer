@@ -45,6 +45,7 @@ delayTimerSetup.initializeSetup(delayTimerDisplay, storageObj.delayTimer);
 
 export const delayControls = {
   startDelayTimer,
+  pauseDelayTimer,
   resetDelayTimer,
   stopDelayTimer,
 };

@@ -4,6 +4,13 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+*:focus {
+  outline: 0 !important;
 }
 
 body {
@@ -14,6 +21,15 @@ body {
   justify-content: center;
   align-items: center;
   height: 100dvh;
+}
+
+button {
+  cursor: pointer;
+  transition: filter 0.1s ease-in-out;
+}
+
+button:active {
+  filter: brightness(1.2);
 }
 
 #main-container {
@@ -152,6 +168,10 @@ dialog::backdrop {
   justify-content: center;
 }
 
+#confirm {
+  background-color: #4f6d50;
+}
+
 #cancel,
 #counter-modal-close-btn {
   justify-self: end;
@@ -272,8 +292,8 @@ dialog::backdrop {
   }
 
   #countdown-display {
-    line-height: 5.25rem;
-    font-size: 5.25rem;
+    line-height: 5rem;
+    font-size: 5rem;
   }
 
   .control-btns {
@@ -444,8 +464,8 @@ dialog::backdrop {
   }
 
   #countdown-display {
-    line-height: 7.5rem;
-    font-size: 7.5rem;
+    line-height: 6rem;
+    font-size: 6rem;
   }
 
   .control-btns,

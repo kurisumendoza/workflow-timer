@@ -1,4 +1,5 @@
-import { countdownDisplay, setupModalEl } from './domElements';
+import { countdownDisplay, timerControls, setupModalEl } from './domElements';
+import { showElement, hideElement } from './timerHelpers';
 import { mainTimerSetup } from './timerSetup';
 
 export class TimerSetupModal {
@@ -60,6 +61,8 @@ export class TimerSetupModal {
     }
     this.setup.renderSetTimer(this.mainDisplay, this.modalDisplay);
     this.timeNewlySet = true;
+    hideElement(timerControls.nextBtn);
+    showElement(timerControls.startBtn);
     this.closeSetTimerModal();
   }
 

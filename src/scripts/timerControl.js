@@ -49,7 +49,7 @@ export const resetTimer = function () {
   if (
     !timer.isRunning() &&
     !timer.isPaused() &&
-    countdownDisplay.innerText !== "TIME'S UP!!"
+    countdownDisplay.innerText !== 'Complete!'
   )
     return; //Stop RESET from starting timer
   mainTimerSetup.renderTimerValues(countdownDisplay);
@@ -62,7 +62,7 @@ export const resetTimer = function () {
 };
 
 export const nextTimer = function () {
-  if (countdownDisplay.innerText !== "TIME'S UP!!") return;
+  if (countdownDisplay.innerText !== 'Complete!') return;
   mainTimerSetup.renderTimerValues(countdownDisplay);
   timer.reset();
   delayControls.resetDelayTimer();
@@ -105,8 +105,8 @@ const reinitializeTimersOnTimeSet = function () {
 };
 
 const pauseTimersOnTimerBeingSet = function () {
-  if (timer.isRunning()) timer.pause();
-  if (delayTimer.isRunning()) delayTimer.pause();
+  pauseTimer();
+  if (delayTimer.isRunning()) delayControls.pauseDelayTimer();
 };
 
 const playAlertSound = function () {
@@ -119,7 +119,7 @@ const initializeControlEventListeners = function () {
     countdownDisplay.innerText = timer.getTimeValues().toString();
   });
   timer.addEventListener('targetAchieved', () => {
-    countdownDisplay.innerText = "TIME'S UP!!";
+    countdownDisplay.innerText = 'Complete!';
     playAlertSound();
     hideElement(timerControls.pauseBtn);
     showElement(timerControls.nextBtn);
