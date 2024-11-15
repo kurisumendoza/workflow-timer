@@ -1,8 +1,10 @@
+export const mainContainer = document.getElementById('main-container');
 export const countdownDisplay = document.getElementById('countdown-display');
 export const delayTimerDisplay = document.getElementById(
   'delay-countdown-display'
 );
 export const totalTimeDisplay = document.getElementById('total-time');
+export const loader = document.querySelector('.loader');
 
 export const timerControls = {
   startBtn: document.getElementById('start'),
